@@ -35,8 +35,8 @@
      ┌─────────────────┼─────────────────┐
      │                 │                 │
 ┌────▼─────┐    ┌──────▼──────┐   ┌──────▼──────┐
-│ B. Terrain│    │C. Équipes   │   │D. Analyse   │
-│ Homographie│   │K-Means Color│   │  Tactique   │
+│ B. Terrain│   │C. Équipes   │   │D. Analyse   │
+│ Homographie│  │K-Means Color│   │  Tactique   │
 │ Pixel→Mètre│  │ A / B / Ref │   │ (Cerveau)   │
 └────┬─────┘    └──────┬──────┘   └──────┬──────┘
      │                 │                 │
@@ -108,6 +108,38 @@ pip install -r requirements.txt
 ```
 
 ---
+
+## 🖼️ Images & GIF
+
+J'ai ajouté des images d'exemple sous le dossier `images/` et des scripts pour générer un GIF à partir d'une vidéo (via `ffmpeg`). Remplacez `images/preview.gif` par votre GIF final si vous en avez un.
+
+- Aperçu statique :
+
+![Minimap Preview](images/pitch_preview.svg)
+
+- Exemple GIF (généré avec `scripts/make_gif.ps1` ou `scripts/make_gif.sh`):
+
+![Preview GIF](images/preview.gif)
+
+![Analyse avancée GIF](images/image.png)
+Créer un GIF (Windows PowerShell):
+
+```powershell
+.
+cd .\video_analysis
+powershell -File scripts\make_gif.ps1 -source "data/sample_videos/match.mp4" -out "images/preview.gif" -duration 6
+```
+
+Ou (Linux / WSL / Git Bash):
+
+```bash
+bash scripts/make_gif.sh
+```
+
+Remarques:
+- Installez `ffmpeg` et assurez-vous qu'il est dans le `PATH`.
+- Ajustez `--start` / `-duration` / `-width` dans les scripts pour obtenir la durée et la résolution souhaitées.
+
 
 ## 💻 Utilisation
 
@@ -243,6 +275,60 @@ python main.py --video match.mp4 --homography calibration.json
 → MAS domine territorialement (53% vs 47%)
 → MAS joue haut (bloc à 58%)
 → WAC est compacte (11.8m de spread)
+```
+
+Exemple plus détaillé (extrait réel) :
+
+```
+======================================================================
+   RAPPORT D'ANALYSE TACTIQUE - FOOTBALL INTELLIGENCE
+======================================================================
+   Date: 08/03/2026 22:51
+   Durée analysée: 0.9 minutes
+   Frames analysées: 1399
+======================================================================
+
+┌─── Équipe A ──────────────────────────────────────────
+│
+│  Hauteur de bloc moyenne: 69.7%
+│  Surface couverte (Convex Hull): 993.9 m²
+│  Contrôle territorial (Voronoi): 66.9%
+│  Compacité (spread): 6.9 m
+│
+│  Distribution des phases:
+│    Bloc Haut             96.1% ████████████████████████████████████████████████
+│    Bloc Médian            3.9% █
+│
+│  Pressing intense: 0.0% du temps
+│    (0 situations)
+└───────────────────────────────────────────────────────
+
+┌─── Équipe B ──────────────────────────────────────────
+│
+│  Hauteur de bloc moyenne: 25.1%
+│  Surface couverte (Convex Hull): 704.5 m²
+│  Contrôle territorial (Voronoi): 33.1%
+│  Compacité (spread): 5.9 m
+│
+│  Distribution des phases:
+│    Bloc Bas              96.1% ████████████████████████████████████████████████
+│    Bloc Médian            3.9% █
+│
+│  Pressing intense: 6.8% du temps
+│    (95 situations)
+└───────────────────────────────────────────────────────
+
+┌─── Timeline des transitions tactiques ───────────────┐
+│  [00:03] Équipe A: Bloc Médian → Bloc Haut (durée: 3.2s)
+│  [00:03] Équipe B: Bloc Médian → Bloc Bas (durée: 3.2s)
+└───────────────────────────────────────────────────────┘
+
+┌─── Insights Automatiques ─────────────────────────────┐
+│  → Équipe A domine territorialement (67% vs 33%)
+│  → Équipe A joue haut (bloc à 70%)
+│  → Équipe B est très reculée (bloc à 25%)
+│  → Équipe A est très compacte (6.9m)
+└───────────────────────────────────────────────────────┘
 ```
 
 ---
