@@ -1,0 +1,23 @@
+# Models
+models/*.pt
+models/*.onnx
+
+# Data
+data/sample_videos/
+output/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
