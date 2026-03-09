@@ -119,7 +119,8 @@ J'ai ajouté des images d'exemple sous le dossier `images/` et des scripts pour 
 
 - Exemple GIF (généré avec `scripts/make_gif.ps1` ou `scripts/make_gif.sh`):
 
-![Preview GIF](images/preview.gif)
+![Preview image](images/match_analysed.gif)
+
 
 ![Analyse avancée GIF](images/image.png)
 Créer un GIF (Windows PowerShell):
